@@ -3,11 +3,9 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json; charset=utf-8');
 
-// Настройки
 define('VK_ACCESS_TOKEN', 'vk1.a.u4GqxgzvbelhvjQf52Tj3fw8XcIRWciydcE3v64JyrLcfkzmV67UbokZGe1qKIvnSloLOfR2L_lRI_37ljT7SDmGpuz7o2y_blVjoc21_V3iEJi6zgQAIosSYE730AHVK5kxsxbYK-ZOUWk4LAH1g2yIssUtCSYXIiAn4kmAytny_EBk01ExeHs4JIAXfzqqNwQ30IjPj_e7oHrfRSsMCg');
-define('RECIPIENT_PEER_ID', -186392170); // отправка в группу
+define('RECIPIENT_PEER_ID', -186392170);
 
-// Принимаем данные из POST или GET (для теста)
 $name = isset($_POST['name']) ? trim($_POST['name']) : (isset($_GET['name']) ? trim($_GET['name']) : '');
 $contact = isset($_POST['contact']) ? trim($_POST['contact']) : (isset($_GET['contact']) ? trim($_GET['contact']) : '');
 
@@ -38,7 +36,6 @@ $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $curl_error = curl_error($ch);
 curl_close($ch);
 
-// Логирование
 file_put_contents(__DIR__ . '/vk_debug.log', date('Y-m-d H:i:s') . " HTTP: $http_code | cURL: $curl_error | Response: $response\n", FILE_APPEND);
 
 if ($curl_error) {
